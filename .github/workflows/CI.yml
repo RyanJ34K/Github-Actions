@@ -1,0 +1,29 @@
+name: Java CI
+
+on:
+  push:
+    branches: [ master ]
+  pull request:
+    branches [ master ]
+
+  jobs:
+    build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository_dispatch
+      users: actions/checkout@v3
+
+    - name: Ste up JDK 25
+      users: actions/setup - java@v3
+      with:
+        java - version: '25'
+        distribution: 'temurin'
+
+    - name: Build with Maven
+      working-directory: Calculator
+      run: mvn clean install
+
+    - name: Run tests
+      workinf-directory: Calculator
+      run: mvn test
